@@ -28,4 +28,9 @@ public abstract class Teams {
     public void setCurrentDateTime(String currentDateTime) {
         this.currentDateTime = currentDateTime;
     }
+
+    @Override
+    public String toString() {
+        return "%s \t\t %s".formatted(getTeamName(), getTeamScore());
+    }
 }
