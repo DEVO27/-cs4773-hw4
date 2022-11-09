@@ -1,9 +1,18 @@
 package application.model;
 
-public abstract class Teams {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Teams {
+    private String currentDateTime;
     private String teamName;
     private int teamScore;
-    private String currentDateTime;
+
+    public Teams() {
+        this.currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        this.teamName = "No name provided";
+        this.teamScore = 0;
+    }
 
     public String getTeamName() {
         return teamName;
