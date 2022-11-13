@@ -42,24 +42,14 @@ public class ViewModel extends Application implements Initializable {
     }
 
     public void loadEditor() throws IOException {
-<<<<<<< HEAD
         int index = myListView.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader(ViewModel.class.getResource("Editor.fxml"));
         Parent root = (Parent) loader.load();
-=======
-        //int index = myListView.getSelectionModel().getSelectedIndex();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Editor.fxml"));
-        Parent root = loader.load();
-        //ViewEditor con = loader.getController();
-        //con.setTeam(scoreBoard.getTeam(index));
-        //activeWindows.add(con);
->>>>>>> d5869bce97553941bf8d7f7e1d61e8812abefa47
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Editor");
         stage.show();
-<<<<<<< HEAD
 
 
         /*
@@ -70,8 +60,6 @@ public class ViewModel extends Application implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Editor");
         stage.show(); */
-=======
->>>>>>> d5869bce97553941bf8d7f7e1d61e8812abefa47
     }
 
     public static void main(String[] args) {
