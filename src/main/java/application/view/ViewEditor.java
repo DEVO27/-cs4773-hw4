@@ -55,4 +55,8 @@ public class ViewEditor implements Initializable {
         myScore.setText(String.valueOf(team.getTeamScore()));
         myDate.setText(team.getCurrentDateTime());
     }
+
+    public Team getTeam() {
+        return team;
+    }
 }

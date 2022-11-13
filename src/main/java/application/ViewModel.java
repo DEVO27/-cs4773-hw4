@@ -1,6 +1,7 @@
 package application;
 
 import application.model.Scoreboard;
+import application.view.ViewEditor;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -21,6 +24,7 @@ public class ViewModel extends Application implements Initializable {
 
     private static Scene scene;
     private final Scoreboard scoreBoard = new Scoreboard();
+    private List<ViewEditor> activeWindows = new ArrayList<>();
     @FXML
     private ListView<String> myListView;
 
@@ -35,6 +39,13 @@ public class ViewModel extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         myListView.getItems().addAll(scoreBoard.ToString());
+    }
+
+    public void loadEditor() throws IOException {
+        int index = myListView.getSelectionModel().getSelectedIndex();
+        activeWindows.add(new ViewEditor(scoreBoard.getTeam(index)));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Editor.fxml"));
+        Parent root = loader.load();
     }
 
     public static void main(String[] args) {
