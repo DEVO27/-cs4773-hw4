@@ -1,6 +1,5 @@
 package application;
 
-import application.model.Teams;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
