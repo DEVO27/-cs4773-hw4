@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ViewEditor implements Initializable {
+public class ViewEditor { /***
     @FXML
     private TextField myName;
     @FXML
@@ -49,6 +49,9 @@ public class ViewEditor implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /***myName.setText(getTeam().getTeamName());
+        myScore.setText(String.valueOf(getTeam().getTeamScore()));
+        myDate.setText(getTeam().getCurrentDateTime());
         this.url = url;
         rb = resourceBundle;
         myName.setText(team.getTeamName());
@@ -58,5 +61,5 @@ public class ViewEditor implements Initializable {
 
     public Team getTeam() {
         return team;
-    }
+    }  ***/
 }

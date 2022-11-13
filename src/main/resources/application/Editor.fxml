@@ -16,6 +16,6 @@
       <Label layoutX="26.0" layoutY="24.0" prefHeight="17.0" prefWidth="96.0" text="Team Name" />
       <Label layoutX="26.0" layoutY="53.0" text="Score" />
       <Label layoutX="26.0" layoutY="83.0" prefHeight="17.0" prefWidth="87.0" text="Last Updated" />
-      <Button fx:id="mySave" layoutX="217.0" layoutY="110.0" mnemonicParsing="false" onAction="#updateTeam" text="Save" />
+      <Button fx:id="mySave" layoutX="217.0" layoutY="110.0" mnemonicParsing="false" text="Save" />
    </children>
 </AnchorPane>
