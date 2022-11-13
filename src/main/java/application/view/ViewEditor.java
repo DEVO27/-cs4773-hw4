@@ -19,16 +19,20 @@ public class ViewEditor { /***
     @FXML
     private TextField myDate;
 
-    private final Team team;
+    private Team team;
     private URL url;
     private ResourceBundle rb;
+
+    public ViewEditor() {
+        this.team = null;
+    }
 
     public ViewEditor (Team team) {
         this.team = team;
     }
 
-    public void init() {
-
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public void updateTeam(ActionEvent actionEvent) {
