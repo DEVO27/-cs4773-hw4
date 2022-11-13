@@ -40,5 +40,4 @@ public class ViewModel extends Application implements Initializable {
     public static void main(String[] args) {
         launch();
     }
-
 }
