@@ -42,10 +42,17 @@ public class ViewModel extends Application implements Initializable {
     }
 
     public void loadEditor() throws IOException {
-        int index = myListView.getSelectionModel().getSelectedIndex();
-        activeWindows.add(new ViewEditor(scoreBoard.getTeam(index)));
+        //int index = myListView.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Editor.fxml"));
         Parent root = loader.load();
+        //ViewEditor con = loader.getController();
+        //con.setTeam(scoreBoard.getTeam(index));
+        //activeWindows.add(con);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Editor");
+        stage.show();
     }
 
     public static void main(String[] args) {
