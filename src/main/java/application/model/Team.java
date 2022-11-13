@@ -3,15 +3,16 @@ package application.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Teams {
+public class Team {
     private String currentDateTime;
     private String teamName;
     private int teamScore;
 
-    public Teams() {
+    public Team() {
         this.currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         this.teamName = "No name provided";
         this.teamScore = 0;
+
     }
 
     public String getTeamName() {
