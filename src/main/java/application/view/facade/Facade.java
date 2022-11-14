@@ -45,7 +45,7 @@ public class Facade extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-        stage.setTitle("Editor");
+        stage.setTitle("Scoreboard");
         stage.setScene(scene);
         stage.show();
 
