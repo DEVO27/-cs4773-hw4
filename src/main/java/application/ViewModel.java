@@ -57,6 +57,7 @@ public class ViewModel implements Observable {
         ViewEditor editor = loader.getController();
         addDisplay(editor);
 
+        editor.setViewModel(this);
         editor.displayValues(scoreBoard.getTeam(index), index);
         editor.getViewModel().activeWindows.addAll(getActiveWindows());
         editor.getViewModel().scoreBoard.setTeams(scoreBoard.getTeams());
@@ -70,6 +71,7 @@ public class ViewModel implements Observable {
 
     public void saveContent(Team team, int index, ViewModel viewModel) {
         scoreBoard.getTeams().set(index, team);
+        displayValues();
         Notify(team, index);
     }
 
@@ -93,5 +95,9 @@ public class ViewModel implements Observable {
 
     public List<IObserver> getActiveWindows() {
         return activeWindows;
+    }
+
+    public void displayValues() {
+        myListView.getItems().setAll(scoreBoard.ToString());
     }
 }

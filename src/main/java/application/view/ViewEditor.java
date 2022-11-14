@@ -14,7 +14,7 @@ public class ViewEditor implements IObserver {
     @FXML
     private TextField myDate;
 
-    private ViewModel viewModel = new ViewModel();
+    private ViewModel viewModel;
     private int index;
 
     @Override

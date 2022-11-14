@@ -43,6 +43,10 @@ public class Facade extends Application {
     public void loadScoreboard() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Scoreboard.fxml"));
         Parent root = loader.load();
+
+        ViewModel scoreBoard = loader.getController();
+        scoreBoard.displayValues();
+
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Scoreboard");
