@@ -2,7 +2,10 @@ package application;
 
 import application.model.Scoreboard;
 import application.model.Team;
+import application.view.Observers.IObserver;
+import application.view.Observers.Observable;
 import application.view.ViewEditor;
+import application.view.ViewScoreboard;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,13 +24,18 @@ import java.util.ResourceBundle;
 /**
  * JavaFX App
  */
-public class ViewModel extends Application implements Initializable {
-
+public class ViewModel extends Application implements Initializable, Observable {
     private static Scene scene;
     private final Scoreboard scoreBoard = new Scoreboard();
-    private List<ViewEditor> activeWindows = new ArrayList<>();
+    private final List<IObserver> activeWindows = new ArrayList<>();
+    //private final ViewScoreboard viewScoreboard = new ViewScoreboard();
     @FXML
-    private ListView<String> myListView;
+    private ListView<String> myListView = new ListView<>();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        myListView.getItems().setAll(scoreBoard.ToString());
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -37,50 +45,49 @@ public class ViewModel extends Application implements Initializable {
         stage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        myListView.getItems().addAll(scoreBoard.ToString());
-    }
-
     @FXML
     public void loadEditor() throws IOException {
         int index = myListView.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Editor.fxml"));
-        Parent root = (Parent) loader.load();
-        ViewEditor con = loader.getController();
-        activeWindows.add(con);
-        con.displayValue(scoreBoard.getTeam(index), index);
+        Parent root = loader.load();
+        ViewEditor editor = loader.getController();
+        addDisplay(editor);
+
+        editor.displayValues(scoreBoard.getTeam(index), index);
+        editor.getViewModel().activeWindows.addAll(getActiveWindows());
+        editor.getViewModel().scoreBoard.setTeams(scoreBoard.getTeams());
+
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-        stage.setScene(scene);
         stage.setTitle("Editor");
+        stage.setScene(scene);
         stage.show();
-
-
-        /*
-        ViewEditor con = loader.getController();
-        activeWindows.add(con);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Editor");
-        stage.show(); */
     }
 
-    public void save(Team team, int index) {
+    public void saveContent(Team team, int index, ViewModel viewModel) {
         scoreBoard.getTeams().set(index, team);
-        notify(team, index);
+        Notify(team, index);
     }
 
-    public void notify(Team team, int index) {
-        System.out.println("Entered notify");
-        System.out.println(activeWindows);
-        for (ViewEditor viewEditor : activeWindows) {
-            viewEditor.displayValue(team, index);
+    @Override
+    public void addDisplay(IObserver iObserver) {
+        activeWindows.add(iObserver);
+    }
+
+    @Override
+    public void Notify(Team team, int index) {
+        for (IObserver iObserver : activeWindows) {
+            iObserver.displayValues(team, index);
         }
+        System.out.println("The new scoreboard: ");
+        for (Team team1 : scoreBoard.getTeams()) {
+            System.out.println(team1);
+        }
+
+        initialize(null, null);
     }
 
-    public static void main(String[] args) {
-        launch();
+    public List<IObserver> getActiveWindows() {
+        return activeWindows;
     }
 }
