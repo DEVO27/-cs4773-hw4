@@ -5,5 +5,6 @@ module org.example {
     opens application to javafx.fxml;
     opens application.view to javafx.fxml;
     //exports application.view to javafx.fxml;
+    exports application.view.facade;
     exports application;
 }

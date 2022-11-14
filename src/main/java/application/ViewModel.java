@@ -6,6 +6,7 @@ import application.view.Observers.IObserver;
 import application.view.Observers.Observable;
 import application.view.ViewEditor;
 import application.view.ViewScoreboard;
+import application.view.facade.Facade;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.cert.CertificateFactorySpi;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,7 +26,9 @@ import java.util.ResourceBundle;
 /**
  * JavaFX App
  */
-public class ViewModel extends Application implements Initializable, Observable {
+//public class ViewModel extends Application implements Initializable, Observable {
+public class ViewModel implements Observable {
+    private Facade facade = new Facade();
     private static Scene scene;
     private final Scoreboard scoreBoard = new Scoreboard();
     private final List<IObserver> activeWindows = new ArrayList<>();
@@ -32,7 +36,7 @@ public class ViewModel extends Application implements Initializable, Observable 
     @FXML
     private ListView<String> myListView = new ListView<>();
 
-    @Override
+    /*@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         myListView.getItems().setAll(scoreBoard.ToString());
     }
@@ -43,7 +47,7 @@ public class ViewModel extends Application implements Initializable, Observable 
         stage.setTitle("ScoreBoard");
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
     @FXML
     public void loadEditor() throws IOException {
@@ -84,7 +88,7 @@ public class ViewModel extends Application implements Initializable, Observable 
             System.out.println(team1);
         }
 
-        initialize(null, null);
+        //initialize(null, null);
     }
 
     public List<IObserver> getActiveWindows() {
