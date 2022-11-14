@@ -1,5 +1,7 @@
 package application.view;
 
+import application.ViewModel;
+import application.model.Scoreboard;
 import application.model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ViewEditor { /***
+public class ViewEditor{
     @FXML
     private TextField myName;
     @FXML
@@ -19,11 +21,15 @@ public class ViewEditor { /***
     @FXML
     private TextField myDate;
 
+    //private int index;
+    private ViewModel viewModel;
     private Team team;
-    private URL url;
-    private ResourceBundle rb;
+    private Scoreboard scoreboard;
+    private int index;
+    //private URL url;
+    //private ResourceBundle rb;
 
-    public ViewEditor() {
+    /*public ViewEditor() {
         this.team = null;
     }
 
@@ -33,27 +39,54 @@ public class ViewEditor { /***
 
     public void setTeam(Team team) {
         this.team = team;
-    }
+    }*/
 
-    public void updateTeam(ActionEvent actionEvent) {
+    /*public void updateTeam(ActionEvent actionEvent) {
         try {
             team.setTeamName(myName.getText());
             team.setTeamScore(Integer.parseInt(myScore.getText()));
             team.setCurrentDateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            scoreBoard.updateTeam(this.team, index);
+            viewModel.notify();
         } catch (NumberFormatException e) {
             System.out.println("Enter numbers only, please.");
         } catch (Exception e) {
             System.out.println(e);
         }
+    }*/
+
+
+    public void displayValue(Team team, int index) {
+        this.team = team;
+        this.index = index;
+        this.viewModel = viewModel;
+        myName.setText(team.getTeamName());
+        myScore.setText(String.valueOf(team.getTeamScore()));
+        myDate.setText(team.getCurrentDateTime());
     }
 
-    public void updateWindow() {
-        initialize(url, rb);
+    public void update() {
+        try {
+            team.setTeamName(myName.getText());
+            team.setTeamScore(Integer.parseInt(myScore.getText()));
+            team.setCurrentDateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            viewModel.save(team, index);  //this will work if it is passed by reference
+            viewModel.notify();
+            System.out.println("Got past the notify function");
+        } catch (NumberFormatException e) {
+            System.out.println("Enter numbers only, please.");
+        } catch (Exception e) {
+            System.out.println("Nawh, entered generic catch");
+            System.out.println(e);
+        }
     }
 
-    @Override
+    /*@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /***myName.setText(getTeam().getTeamName());
+        /*
+        System.out.println("Init is fine");
+        System.out.println(team.getTeamName()); //remove me
+        myName.setText(team.getTeamName());
         myScore.setText(String.valueOf(getTeam().getTeamScore()));
         myDate.setText(getTeam().getCurrentDateTime());
         this.url = url;
@@ -61,9 +94,9 @@ public class ViewEditor { /***
         myName.setText(team.getTeamName());
         myScore.setText(String.valueOf(team.getTeamScore()));
         myDate.setText(team.getCurrentDateTime());
-    }
+    }*/
 
-    public Team getTeam() {
+    /*public Team getTeam() {
         return team;
-    }  ***/
+    }*/
 }

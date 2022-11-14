@@ -22,7 +22,7 @@ public class Scoreboard {
     }
 
     public Team getTeam(int index) throws IndexOutOfBoundsException {
-        return getTeam(index);
+        return getTeams().get(index);
     }
 
     public List<Team> getTeams() {

@@ -1,6 +1,7 @@
 package application;
 
 import application.model.Scoreboard;
+import application.model.Team;
 import application.view.ViewEditor;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -41,10 +42,14 @@ public class ViewModel extends Application implements Initializable {
         myListView.getItems().addAll(scoreBoard.ToString());
     }
 
+    @FXML
     public void loadEditor() throws IOException {
         int index = myListView.getSelectionModel().getSelectedIndex();
-        FXMLLoader loader = new FXMLLoader(ViewModel.class.getResource("Editor.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Editor.fxml"));
         Parent root = (Parent) loader.load();
+        ViewEditor con = loader.getController();
+        activeWindows.add(con);
+        con.displayValue(scoreBoard.getTeam(index), index);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -60,6 +65,19 @@ public class ViewModel extends Application implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Editor");
         stage.show(); */
+    }
+
+    public void save(Team team, int index) {
+        scoreBoard.getTeams().set(index, team);
+        notify(team, index);
+    }
+
+    public void notify(Team team, int index) {
+        System.out.println("Entered notify");
+        System.out.println(activeWindows);
+        for (ViewEditor viewEditor : activeWindows) {
+            viewEditor.displayValue(team, index);
+        }
     }
 
     public static void main(String[] args) {
