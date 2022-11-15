@@ -3,8 +3,10 @@ module org.example {
     requires javafx.fxml;
 
     opens application to javafx.fxml;
+    opens application.view.facade to javafx.fxml;
+    opens application.ViewModel to javafx.fxml;
     opens application.view to javafx.fxml;
-    //exports application.view to javafx.fxml;
+    exports application.view to javafx.fxml;
     exports application.view.facade;
-    exports application;
+    exports application.ViewModel to javafx.fxml;
 }

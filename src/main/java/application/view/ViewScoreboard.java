@@ -1,6 +1,5 @@
 package application.view;
 
-import application.ViewModel;
 import application.model.Team;
 import application.view.Observers.IObserver;
 import javafx.fxml.FXML;
@@ -10,8 +9,7 @@ public class ViewScoreboard implements IObserver {
     private final ListView<String> myListView = new ListView<>();
 
     @Override
-    public void displayValues(Team team, int index) {
-    }
+    public void displayValues(Team team, int index) {}
 
     @Override
     public void displayValues(String[] scoreboard) {

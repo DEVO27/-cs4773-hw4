@@ -1,8 +1,9 @@
+application\ViewModel\ViewModel.class
 application\model\Team.class
 application\view\ViewEditor.class
 module-info.class
-application\ViewModel.class
 application\model\Scoreboard.class
+application\view\facade\Facade.class
 application\view\Observers\Observable.class
 application\view\Observers\IObserver.class
 application\view\ViewScoreboard.class

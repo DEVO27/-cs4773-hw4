@@ -1,6 +1,6 @@
 package application.view;
 
-import application.ViewModel;
+import application.ViewModel.ViewModel;
 import application.model.Team;
 import application.view.Observers.IObserver;
 import javafx.fxml.FXML;

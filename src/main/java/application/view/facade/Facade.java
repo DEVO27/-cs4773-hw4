@@ -1,8 +1,8 @@
 package application.view.facade;
 
-import application.ViewModel;
-import application.model.Scoreboard;
+import application.ViewModel.ViewModel;
 import application.view.ViewEditor;
+import application.view.ViewScoreboard;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +14,7 @@ import java.util.Objects;
 
 public class Facade extends Application {
     private String name;
-
-    //Facade facade = new facade()
-    //facade.setName("Editor");
-
+    private ViewScoreboard scoreboard;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -39,7 +36,6 @@ public class Facade extends Application {
         return loader.getController();
     }
 
-    //public Scoreboard loadScoreboard() throws IOException {
     public void loadScoreboard() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Scoreboard.fxml"));
         Parent root = loader.load();
@@ -62,5 +58,9 @@ public class Facade extends Application {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ViewScoreboard getScoreboard() {
+        return scoreboard;
     }
 }
