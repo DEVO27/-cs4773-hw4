@@ -58,6 +58,7 @@ public class ViewModel implements Observable {
         addDisplay(editor);
 
         editor.setViewModel(this);
+        editor.setIndex(index);
         editor.displayValues(scoreBoard.getTeam(index), index);
         editor.getViewModel().activeWindows.addAll(getActiveWindows());
         editor.getViewModel().scoreBoard.setTeams(scoreBoard.getTeams());

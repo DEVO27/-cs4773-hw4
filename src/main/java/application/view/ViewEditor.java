@@ -19,11 +19,13 @@ public class ViewEditor implements IObserver {
 
     @Override
     public void displayValues(Team team, int index) {
-        this.myName.setText(team.getTeamName());
-        this.myScore.setText(String.valueOf(team.getTeamScore()));
-        this.myDate.setText(team.getCurrentDateTime());
-        myDate.setEditable(false);
-        this.index = index;
+        if (this.index == index) {
+            this.myName.setText(team.getTeamName());
+            this.myScore.setText(String.valueOf(team.getTeamScore()));
+            this.myDate.setText(team.getCurrentDateTime());
+            myDate.setEditable(false);
+            //this.index = index;
+        }
     }
 
     @Override
