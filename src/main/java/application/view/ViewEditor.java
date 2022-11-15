@@ -17,6 +17,11 @@ public class ViewEditor implements IObserver {
     private ViewModel viewModel;
     private int index;
 
+    /**
+     * Displays and updates current team object attributes
+     * @param team
+     * @param index
+     */
     @Override
     public void displayValues(Team team, int index) {
         if (this.index == index) {
@@ -24,20 +29,22 @@ public class ViewEditor implements IObserver {
             this.myScore.setText(String.valueOf(team.getTeamScore()));
             this.myDate.setText(team.getCurrentDateTime());
             myDate.setEditable(false);
-            //this.index = index;
         }
     }
 
     @Override
     public void displayValues(String[] scoreboard) {
-
     }
 
     public void saveValues() {
-        Team team = new Team();
-        team.setTeamName(myName.getText());
-        team.setTeamScore(Integer.parseInt(myScore.getText()));
-        viewModel.saveContent(team, index, getViewModel());
+        try {
+            Team team = new Team();
+            team.setTeamName(myName.getText());
+            team.setTeamScore(Integer.parseInt(myScore.getText()));
+            viewModel.saveContent(team, index, getViewModel());
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
     }
 
     public ViewModel getViewModel() {

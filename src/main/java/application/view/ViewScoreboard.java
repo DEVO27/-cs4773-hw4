@@ -11,6 +11,10 @@ public class ViewScoreboard implements IObserver {
     @Override
     public void displayValues(Team team, int index) {}
 
+    /**
+     * Print the list of teams in scoreboard
+     * @param scoreboard
+     */
     @Override
     public void displayValues(String[] scoreboard) {
         myListView.getItems().addAll(scoreboard);
